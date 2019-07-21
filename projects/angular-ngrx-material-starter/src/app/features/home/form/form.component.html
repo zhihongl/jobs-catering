@@ -1,5 +1,100 @@
 <div class="container" rtl>
-  <h1>haha this is the form</h1>
-
+  <div class="row">
+    <div class="col">
+      <h2 class="main-heading">Creating User Profile</h2>
+    </div>
+  </div>
+  <ng-container *ngIf="formValueChanges$ | async as updatedForm">
+    {{update(updatedForm)}}
+  </ng-container>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <mat-card>
+          <div class="row">
+            <mat-form-field class="col" [ngClass]="routeAnimationsElements">
+              <input matInput placeholder="First Name"
+                formControlName="firstName">
+              <mat-error *ngIf="form.get('firstName').invalid">
+                First Name is invalid.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col" [ngClass]="routeAnimationsElements">
+              <input matInput placeholder="Last Name"
+                     formControlName="lastName">
+              <mat-error *ngIf="form.get('lastName').invalid">
+                Last Name is invalid.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col" [ngClass]="routeAnimationsElements">
+              <input matInput placeholder="Display Name"
+                     formControlName="displayName">
+              <mat-error *ngIf="form.get('displayName').invalid">
+                Display Name is invalid.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col" [ngClass]="routeAnimationsElements">
+              <input matInput placeholder="Email"
+                formControlName="email" type="email">
+              <mat-error *ngIf="form.get('email').hasError('required')">
+                Email is required.
+              </mat-error>
+              <mat-error *ngIf="form.get('email').hasError('email')">
+                Email is invalid.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col" [ngClass]="routeAnimationsElements">
+              <textarea matInput placeholder="Description of meal preference"
+                formControlName="description" minlength="10" maxlength="1000" cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" cdkAutosizeMaxRows="10"></textarea>
+              <mat-hint align="end">{{form.get('description').value?.length}} /
+                1000</mat-hint>
+              <mat-error *ngIf="form.get('description').hasError('required')">
+                Description of meal preference is required.
+              </mat-error>
+              <mat-error *ngIf="form.get('description').hasError('minlength')">
+                The minimum length is 10 characters.
+              </mat-error>
+              <mat-error *ngIf="form.get('description').hasError('maxlength')">
+                The maximum length is 1000 characters.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col" [ngClass]="routeAnimationsElements">
+              <input matInput placeholder="Department"
+                     formControlName="department">
+              <mat-error *ngIf="form.get('department').invalid">
+                Department is invalid.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col" [ngClass]="routeAnimationsElements">
+              <input matInput placeholder="Team"
+                     formControlName="team">
+              <mat-error *ngIf="form.get('team').invalid">
+                Team is invalid.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row buttons d-flex justify-content-between pad">
+            <button mat-raised-button color="primary" [ngClass]="routeAnimationsElements">
+              save
+            </button>
+            <button type="reset" mat-raised-button (click)="reset()" [ngClass]="routeAnimationsElements">
+              reset
+            </button>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </form>
 
 </div>

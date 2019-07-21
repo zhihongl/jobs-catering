@@ -6,7 +6,6 @@ import { DataService } from '../../../core/data/data.service';
 import {
   NotificationService
 } from '../../../core/core.module';
-import { Form } from '../form.model';
 
 @Component({
   selector: 'anms-form',
@@ -42,8 +41,8 @@ export class FormComponent implements OnInit {
   ngOnInit() {
   }
 
-  update(form: Form) {
-  }
+  // update(form: Form) {
+  // }
 
   save(dataObj) {
     this.data.submitUserAccount(dataObj).subscribe(data => {

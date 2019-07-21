@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {DataService} from '../../../core/data/data.service';
+import { User } from './userlist.data';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'anms-userlist',
@@ -8,9 +11,18 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class UserlistComponent implements OnInit {
 
-  constructor() { }
+  userList$: Observable<any>;
+
+  constructor(
+    private data: DataService
+  ) { }
 
   ngOnInit() {
+    this.userList$ = this.data.getUserProfiles();
+  }
+
+  clickedUser(user) {
+    console.warn('clickedUser', user);
   }
 
 }

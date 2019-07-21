@@ -1,1 +1,26 @@
-<p>userlist works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <h2>User List</h2>
+    <div class="user-list"  *ngIf="userList$  | async as userList" >
+      <mat-card *ngFor="let user of userList.reverse()"
+                (click)=clickedUser(user)>
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title class="small-text">{{user.displayName}}</mat-card-title>
+          <mat-card-subtitle>{{user.firstName}} {{user.lastName}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="m-0"><a mat-stroked-button href="mailto:{{user.email}}">{{user.email}}</a></p>
+          <p class="m-0">{{user.description}}</p>
+          <p class="m-0">{{user.department}}</p>
+          <p class="m-0">{{user.team}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
